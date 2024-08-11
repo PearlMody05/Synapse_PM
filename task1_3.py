@@ -37,6 +37,9 @@ def main():
     amount = total_spending(request_spending,id,category)
     print("amount paid by "+id +"in"+ category +" is "+ str(amount))
     account_balance(request_spending,id)
+    val = account_balance(request_spending,id)
+    print(f"Balance of {id} is {val}")
+    money_owed(request_spending ,id )
 
     
 
@@ -56,10 +59,16 @@ def account_balance(request_spending,account_id):
         money =money + entry.get("amount")
     money = -money
     val = request_spending.get(account_id).get("balance")  -  money
-    print(f"Balance of {account_id} is {val}")
+    return val 
+    
 
 def money_owed(request_spending , account_id ):
-    print(f"Money owed is : ")
+    ans = account_balance(request_spending,account_id)
+   # left = request_spending.get(account_id).get("balance")  -  ans ans = -1000 money given to her shd be 1000rs and ans=+1000 she has to give back
+    if(ans>0):
+        print(f"{account_id} has to pay back { ans} to the trasurer")
+    else:
+        print(f"The treasurer needs to give her money rs: { ans}" ) # how much extra money needed to be given 
         
 
 
